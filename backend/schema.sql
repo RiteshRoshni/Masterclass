@@ -1,0 +1,2 @@
+create table if not exists students(id uuid primary key default gen_random_uuid(),name text not null,email text not null unique,phone text not null,verified boolean not null default false,verify_hash text,verify_expires timestamptz,status text not null default 'unpaid' check(status in ('unpaid','pending','approved','rejected')),utr text,created_at timestamptz not null default now(),updated_at timestamptz not null default now());
+create table if not exists settings(key text primary key,value bytea,content_type text,updated_at timestamptz not null default now());
